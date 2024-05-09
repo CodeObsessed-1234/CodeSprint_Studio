@@ -1,7 +1,12 @@
+import com.formdev.flatlaf.FlatDarkLaf;
+import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello CodeSprint Editor");
-        System.out.println("Testing on Github.com");
-        System.out.println("I will share the library links.");
+        FlatDarkLaf.setup();
+        JFrame frame=new JFrame();
+        frame.setSize(1280,786);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 }
