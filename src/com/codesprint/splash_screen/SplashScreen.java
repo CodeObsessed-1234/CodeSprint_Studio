@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JWindow;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Objects;
 
 public class SplashScreen extends JWindow {
     public SplashScreen(){
@@ -16,7 +17,7 @@ public class SplashScreen extends JWindow {
         this.setSize(Constants.SPLASH_SCREEN_WIDTH,Constants.SPLASH_SCREEN_HEIGHT);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
-        JLabel backgroundLabel=new JLabel(new ImageIcon("C:\\Users\\USER\\IdeaProjects\\CodeSprint Studio\\assets\\splash_screen.png"));
+        JLabel backgroundLabel=new JLabel(new ImageIcon(Objects.requireNonNull(getClass().getResource("/splash_screen.png"))));
         backgroundLabel.setBounds(0,0,800,500);
         add(backgroundLabel);
         JLabel editorName=new JLabel("CodeSprint STUDIO");
