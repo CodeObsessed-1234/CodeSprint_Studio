@@ -17,5 +17,17 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/library/flatlaf-extras-3.4.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" exported="" name="jsvg-1.4.0" level="project" />
+    <orderEntry type="library" exported="" name="flatlaf-jide-oss-3.4.1" level="project" />
+    <orderEntry type="library" exported="" name="jide-oss-3.7.15" level="project" />
   </component>
 </module>
