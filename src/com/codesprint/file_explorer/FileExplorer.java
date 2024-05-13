@@ -9,6 +9,7 @@ import java.io.File;
 
 public class FileExplorer {
 
+    // lazyLoad for fast loading of the Directory tree
     private static void loadDirectoryContents(DefaultMutableTreeNode parent, JTree tree) {
         SwingWorker<Void, DefaultMutableTreeNode> worker = new SwingWorker<>() {
             @Override
@@ -40,6 +41,8 @@ public class FileExplorer {
     }
 
 
+
+    //generate the tree of directory for selected folder
     public static JTree createDirectoryTree(File selectedFolder){
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(new FileTreeNode(new File(selectedFolder.toString())));
         JTree tree = new JTree(root);
@@ -53,6 +56,7 @@ public class FileExplorer {
 }
 
 
+//make the custom Icon for folder and files
 class CustomTreeCellRenderer extends DefaultTreeCellRenderer {
     private final Icon folderIcon;
     private final Icon fileIcon;
