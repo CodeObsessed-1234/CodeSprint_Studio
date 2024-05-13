@@ -54,6 +54,7 @@ public class EditorPage{
         JLabel welcomeLabel = new JLabel("Welcome Back",SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Arial",Font.BOLD,45));
         splitPane.setRightComponent(welcomeLabel);
+        splitPane.setBackground(new Color(27,27,29));
         return splitPane;
     }
 
