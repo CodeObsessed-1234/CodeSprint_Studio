@@ -1,16 +1,22 @@
 package com.codesprint.user_interface;
 
+import com.codesprint.constants.Constants;
+import com.codesprint.file_explorer.FileExplorer;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.jidesoft.swing.JideTabbedPane;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JTextArea;
+
+import javax.swing.*;
 import javax.swing.border.MatteBorder;
-import java.awt.Color;
+import java.awt.*;
+import java.io.File;
 
 public class EditorPage{
+
+  
+    private static final JTextArea fileViewRightSideEditor = new JTextArea();
+    private static JSplitPane splitPane;
+
     public EditorPage(){
         FlatDarkLaf.setup();
         JFrame frame=new JFrame();
@@ -29,8 +35,53 @@ public class EditorPage{
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JideTabbedPane tabbedPane = getJideTabbedPane();
+        JSplitPane functionSplitView = functionView();
+        fileExplorerView();
         frame.add(tabbedPane);
+        frame.add(functionSplitView);
         frame.setVisible(true);
+    }
+
+    private static JSplitPane functionView(){
+        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        splitPane.setRightComponent(EditorPage.fileViewRightSideEditor);
+        return splitPane;
+    }
+
+    private static void fileExplorerView(){
+
+
+        JButton openFolderButton= new JButton("Open Folder");
+        openFolderButton.setFont(Constants.fontButton);
+        openFolderButton.setMargin(new Insets(10, 20, 10, 20));
+        openFolderButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        openFolderButton.setBackground(Color.PINK);
+        openFolderButton.setForeground(Color.DARK_GRAY);
+
+        splitPane.setLeftComponent(openFolderButton);
+
+
+
+        openFolderButton.addActionListener(actionEvent -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+
+            int result = fileChooser.showOpenDialog(fileViewRightSideEditor);
+
+
+            if (result == JFileChooser.APPROVE_OPTION) {
+
+                File selectedFolder = fileChooser.getSelectedFile();
+                openFolderButton.setVisible(false);
+                JScrollPane fileExplorerTreeView = new JScrollPane(FileExplorer.createDirectoryTree(selectedFolder));
+                fileExplorerTreeView.setMinimumSize(new Dimension(200,splitPane.getHeight()));
+                splitPane.setLeftComponent(fileExplorerTreeView);
+            }
+
+        });
+
+
     }
 
     private static JideTabbedPane getJideTabbedPane() {
